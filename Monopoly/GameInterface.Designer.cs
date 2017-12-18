@@ -203,7 +203,6 @@
             this.panelBoard.Size = new System.Drawing.Size(1516, 1353);
             this.panelBoard.TabIndex = 2;
             this.panelBoard.Paint += new System.Windows.Forms.PaintEventHandler(this.panelBoard_Paint);
-            this.panelBoard.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelBoard_MouseDown);
             this.panelBoard.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panelBoard_MouseMove);
             // 
             // stopMusicButton

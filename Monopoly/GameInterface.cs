@@ -17,23 +17,18 @@ namespace Monopoly
     insufficientFund};
     public partial class GameInterface : Form
     {       
+        /*Coordinate class record x and y axis value of each entry on the game board 
+         * and used to repaint panel to show players' positions
+         */
         private class Coordinate
         {           
-            private int x, y;
+            public int X { get; set; }
+            public int Y { get; set; }
+
             public Coordinate(int x, int y)
             {
-                this.x = x;
-                this.y = y;
-            }
-
-            public int GetX()
-            {
-                return x;
-            }
-
-            public int GetY()
-            {
-                return y;
+                X = x;
+                Y = y;
             }
         }
 
@@ -46,7 +41,6 @@ namespace Monopoly
         private int numberOfDices;
         Player currentPlayer;
         Player nextPlayer;
-
         private bool bolGameStarted = false; //0 for begin, 1 for playing
         GameBoardInfo gameBoardInfo;
         List<Coordinate> coordinates;
@@ -54,13 +48,14 @@ namespace Monopoly
         List<EntryInfo> propertyOfPlayer2;
         Player player1;
         Player player2;
-        bool isJustLoaded; //true means jsut loaded a game
+        bool isJustLoaded; //true means just loaded a game
         IDictionary<int,Player> Players;
         Rectangle recPlayer1;
         Rectangle recPlayer2;
         SoundPlayer sound;
-        bool isTurnOffSound;
+        bool isTurnOffSound; //save the state wether the game is save or not
 
+        //This constructor is used for starting a new game
         public GameInterface()
         {
             InitializeComponent();
@@ -76,6 +71,7 @@ namespace Monopoly
             this.Players.Add(1, player2);
             isJustLoaded = false;
             isTurnOffSound = false;
+
             try
             {
                 sound = new SoundPlayer(Monopoly.Properties.Resources.Divided_We_Fall);
@@ -86,6 +82,7 @@ namespace Monopoly
             }
         }
         
+        //This constructor is used for loading a game
         public GameInterface(Player player1, Player player2)
         {
             InitializeComponent();
@@ -102,7 +99,18 @@ namespace Monopoly
             isJustLoaded = true;
             bolGameStarted = true;
             isTurnOffSound = false;
+
+            try
+            {
+                sound = new SoundPlayer(Monopoly.Properties.Resources.Divided_We_Fall);
+                sound.PlayLooping();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + ex.StackTrace.ToString(), "Error");
+            }
         }
+
         private void quitButton_Click(object sender, EventArgs e)
         {
             sound.Stop();
@@ -111,17 +119,20 @@ namespace Monopoly
 
         private void panelBoard_Paint(object sender, PaintEventArgs e)
         {
-            if(!bolGameStarted)
+            /*if just start a new game then paint palyers' positions at the start point
+             *otherwise paint palyers' positions on other entries
+             */
+            if (!bolGameStarted)
             {
                 DrawPlayerAtStart(e);
             } else
             {
-                int xPlayer1 = coordinates[player1.TotalMovement].GetX();
-                int yPlayer1 = coordinates[player1.TotalMovement].GetY();
+                int xPlayer1 = coordinates[player1.TotalMovement].X;
+                int yPlayer1 = coordinates[player1.TotalMovement].Y;
                 DrawMovementPlayer1(e, xPlayer1, yPlayer1);
                 
-                int xPlayer2 = coordinates[player2.TotalMovement].GetX();
-                int yPlayer2 = coordinates[player2.TotalMovement].GetY();
+                int xPlayer2 = coordinates[player2.TotalMovement].X;
+                int yPlayer2 = coordinates[player2.TotalMovement].Y;
                 DrawMovementPlayer2(e, xPlayer2, yPlayer2);
             }            
         }
@@ -168,11 +179,6 @@ namespace Monopoly
             Text= e.Location.X + ":" + e.Location.Y;
         }
 
-        private void panelBoard_MouseDown(object sender, MouseEventArgs e)
-        { 
-            rolledDice.AppendText(e.Location.X + ":" + e.Location.Y + "\n") ;
-        }
-
         private void rollDiceButton_Click(object sender, EventArgs e)
         {
             bolGameStarted = true;
@@ -216,6 +222,11 @@ namespace Monopoly
             ShowAvaliableFund(); // update avalibale fund
         }
 
+        /*Check if the player has non-negative fund available
+         * if not, the anohter player wins the game;
+         * Choose next player who will roll dice, in case one the the player 
+         * is in jail
+         */
         private void endTurnButton_Click(object sender, EventArgs e)
         {
             if(currentPlayer.GetFund() < 0)
@@ -246,6 +257,9 @@ namespace Monopoly
             rollDiceButton.Enabled = true;         
         }
 
+        /*According to different types of form, display relevant form 
+         * 
+         */ 
         private void ShowInformation(EntryInfo info, Player player, int playerID, FormType formType)
         {
             switch (formType)
@@ -289,6 +303,9 @@ namespace Monopoly
             }
         }
 
+        /*Check which position the player has landed, and link each movement to corresponding form.
+         *The chance type moves player to a place using random method.
+         */
         private void PlayerRules(Player player, int toatoalmovemnt)
         {
             EntryInfo info;
@@ -307,8 +324,6 @@ namespace Monopoly
                 UpgradForm upgradForm = new UpgradForm(info, player);
                 upgradForm.ShowDialog();
             }
-            //ShowInformation(EntryInfo info, Player player, 
-            //int playerID, FormType formType)
             else if (info.GetEnumType() == Type.property &&
                 info.WhichPlayer != player.PlayerID)
             {
@@ -336,7 +351,6 @@ namespace Monopoly
             {
                 ShowInformation(info, player, player.PlayerID, FormType.luxuryForm);
             }
-            //TODO move player to certain locations
             else if (info.GetEnumType() == Type.chance)
             {
                 ShowInformation(info, player, player.PlayerID, FormType.chanceForm);
@@ -411,6 +425,7 @@ namespace Monopoly
             Player2FundBox.AppendText(" $" + player2.GetFund());
         }
 
+        //Show the available fund
         private void ManageProperty()
         {
             propertyOfPlayer1 = player1.GetPropertyList();
