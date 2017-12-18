@@ -12,14 +12,13 @@ namespace Monopoly
     public class Player
     {
         public string PlayerName { get; set; }
-        public bool IsJustOutOfJail { get; set; }
-        public int JailTerm { get; set; }
+        public bool IsJustOutOfJail { get; set; }//If player just relaesed from the jail, then true
+        public int JailTerm { get; set; }//The number of turns that player left in staying in jail
         public int TotalMovement { get; set; }
         public int PlayerID { get; set; }
         public bool IsPlayerTurn { get; set; }
         private int fund = 3000;
-        List<EntryInfo> listOfPropoty; 
-        //TODO add a Property to store the houses that the player has
+        List<EntryInfo> listOfPropoty;//Stroe Player's properties' information 
         public Player(string nameOfPlayer, int id)
         {
             TotalMovement = 0;
@@ -40,12 +39,14 @@ namespace Monopoly
             fund += money;
         }
 
+        //Return available fund of the player
         public int GetFund()
         {
             return fund;
         }
 
-        public void Payment(int bill) //pay certain amount of bill
+        //pay certain amount of bill
+        public void Payment(int bill) 
         {
             fund = fund - bill;
         }

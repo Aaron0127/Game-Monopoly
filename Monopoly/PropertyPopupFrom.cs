@@ -24,6 +24,9 @@ namespace Monopoly
             PropertyNameTextBox.AppendText("Would you like to buy this propoty?");
         }
 
+        /*If the player has sufficient fund, the process of purchasing new property 
+        *can be done, otherwise the player cannot buy the property
+        */ 
         private void BuyBotton_Click(object sender, EventArgs e)
         {
             if(player.GetFund() > entryInfo.OriginPrice)

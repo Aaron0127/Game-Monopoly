@@ -24,6 +24,9 @@ namespace Monopoly
             UpgradBox.AppendText("Would you like to Upgrade this propoty?");
         }
 
+        /*If the player has sufficient fund, the process of upgrading new property 
+        *can be done, otherwise the player cannot upgrad the property
+        */
         private void UpgradeButton_Click(object sender, EventArgs e)
         {
             if(player.GetFund() > entryInfo.OriginPrice)

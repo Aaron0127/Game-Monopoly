@@ -12,7 +12,7 @@ namespace Monopoly
 {
     public partial class InformationForm : Form
     {
-        //Constructor for displaying go to jail text to player
+        //Constructor for displaying text and call function to perform relavent actions
         public InformationForm(Player player, FormType formType)
         {
             InitializeComponent();
@@ -72,7 +72,7 @@ namespace Monopoly
             timer.Start();
         }
 
-        //ChestForm(GameInterface.ChestItem chestItem, int radomNum, Player player1, Player player2, int id)
+        //Constructor for Community Chest entry on the game board
         public InformationForm(GameInterface.ChestItem chestItem, int radomNum, Player player1, Player player2, int playerID)
         {
             InitializeComponent();
@@ -148,6 +148,7 @@ namespace Monopoly
             timer.Start();
         }
 
+        //Constructor for ending the game and display winner name
         public InformationForm(Player winner, Player loser, FormType formType)
         {
             InitializeComponent();

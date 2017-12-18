@@ -1,6 +1,4 @@
-﻿/*This file contains the information of each entry on the game board 
- */
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,6 +14,7 @@ namespace Monopoly
         luxuryTax, visitJail, freeParking
     };
 
+    //GameBoardInfo class is used to contain the information of each entry on the game board 
     [Serializable]
     public class GameBoardInfo
     {

@@ -15,11 +15,13 @@ namespace Monopoly
         public PropertyList(List<EntryInfo> player1List, List<EntryInfo> player2List)
         {
             InitializeComponent();
+            
             propertyListP1.ScrollBars = ScrollBars.Vertical;
             propertyListP2.ScrollBars = ScrollBars.Vertical;
 
+            //Print properties of player 1 in textBox propertyListP1
             propertyListP1.AppendText("Player 1 has folllowing property: \n");
-            propertyListP1.AppendText("\n");
+            propertyListP1.AppendText("\n");           
             foreach (var property in player1List)
             {
                 string nameMessage = "Property Name: " + property.EntryName + "\n";
@@ -29,6 +31,7 @@ namespace Monopoly
                 propertyListP1.AppendText("\n");
             }
 
+            //Print properties of player 2 in textBox propertyListP2
             propertyListP2.AppendText("Player 2 has folllowing property: \n");
             propertyListP2.AppendText("\n");
             foreach (var property in player2List)

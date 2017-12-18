@@ -72,7 +72,6 @@
     <Compile Include="PropertyList.Designer.cs">
       <DependentUpon>PropertyList.cs</DependentUpon>
     </Compile>
-    <Compile Include="PropertyManagement.cs" />
     <Compile Include="PropertyPopupFrom.cs">
       <SubType>Form</SubType>
     </Compile>

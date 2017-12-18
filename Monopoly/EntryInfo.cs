@@ -11,7 +11,6 @@ namespace Monopoly
     [Serializable]
     public class EntryInfo
     {
-        //TODO change some methods into Property
         public int OriginPrice { get; set; }
         public int WhichPlayer { get; set; }//0 for not purchased yet, 1 for playper 1, 2 for palyer 2;
         public string EntryName { get; set; }
@@ -33,6 +32,7 @@ namespace Monopoly
             return price;
         }
 
+        //Add property market value
         public void AddPropertyValue()
         {
             price += price;

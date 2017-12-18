@@ -34,7 +34,7 @@ namespace Monopoly
 
         public enum ChestItem {advancedToGo, bankError, doctorFee,
             goToJail, holidayTrip, grandOperaNight};
-        /* if the remider of stateOfPlayer is 0, palyer1's turn to play game 
+        /* If the remider of stateOfPlayer is 0, palyer1's turn to play game 
          * otherwise, palyer2's turn to play game
         */
         private int whichTurn = 0;
@@ -48,12 +48,12 @@ namespace Monopoly
         List<EntryInfo> propertyOfPlayer2;
         Player player1;
         Player player2;
-        bool isJustLoaded; //true means just loaded a game
+        bool isJustLoaded; //True means just loaded a game
         IDictionary<int,Player> Players;
         Rectangle recPlayer1;
         Rectangle recPlayer2;
         SoundPlayer sound;
-        bool isTurnOffSound; //save the state wether the game is save or not
+        bool isTurnOffSound; //Save the state wether the game is save or not
 
         //This constructor is used for starting a new game
         public GameInterface()
@@ -119,7 +119,7 @@ namespace Monopoly
 
         private void panelBoard_Paint(object sender, PaintEventArgs e)
         {
-            /*if just start a new game then paint palyers' positions at the start point
+            /*If just start a new game then paint palyers' positions at the start point
              *otherwise paint palyers' positions on other entries
              */
             if (!bolGameStarted)
@@ -182,12 +182,12 @@ namespace Monopoly
         private void rollDiceButton_Click(object sender, EventArgs e)
         {
             bolGameStarted = true;
-            if (!isJustLoaded) //if start from a new game
+            if (!isJustLoaded) //If start from a new game
             {
                 currentPlayer = Players[whichTurn % 2];
                 nextPlayer = Players[(whichTurn + 1) % 2];
             }
-            else //if start from a load game
+            else //If start from a load game
             {
                 if (Players[0].IsPlayerTurn == true)
                 {
@@ -205,7 +205,7 @@ namespace Monopoly
             numberOfDices = currentPlayer.GetRollDiceResult();
             currentPlayer.TotalMovement += numberOfDices;
             /*
-            * if player 1 has already moved 39 steps,
+            * If player 1 has already moved 39 steps,
             * then find the remminder to incase excess the total number of space on the game board
             */
             if (currentPlayer.TotalMovement >= 39)
@@ -223,9 +223,9 @@ namespace Monopoly
         }
 
         /*Check if the player has non-negative fund available
-         * if not, the anohter player wins the game;
+         * if not, the anohter player wins the game.
          * Choose next player who will roll dice, in case one the the player 
-         * is in jail
+         * is in jail.
          */
         private void endTurnButton_Click(object sender, EventArgs e)
         {
@@ -257,9 +257,7 @@ namespace Monopoly
             rollDiceButton.Enabled = true;         
         }
 
-        /*According to different types of form, display relevant form 
-         * 
-         */ 
+        //According to different types of form, display relevant form 
         private void ShowInformation(EntryInfo info, Player player, int playerID, FormType formType)
         {
             switch (formType)
@@ -360,7 +358,7 @@ namespace Monopoly
             nextPlayer.IsPlayerTurn = true;
         }
 
-        //initial each space coordinate on the board
+        //Initial each space coordinate on the board
         private void InitalCoordinate() 
         {
             //bottom of the Board
