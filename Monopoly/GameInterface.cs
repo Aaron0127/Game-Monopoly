@@ -59,10 +59,11 @@ namespace Monopoly
         public GameInterface()
         {
             InitializeComponent();
+            InitializeToolTip();
             coordinates = new List<Coordinate>();
             InitalCoordinate();
-            player1 = new Player("Player1", 1);
-            player2 = new Player("Player2", 2);
+            player1 = new Player("Player 1", 1);
+            player2 = new Player("Player 2", 2);
             gameBoardInfo = new GameBoardInfo();
 
             ShowAvaliableFund();
@@ -81,7 +82,14 @@ namespace Monopoly
                 MessageBox.Show(ex.Message + ex.StackTrace.ToString(), "Error");
             }
         }
-        
+
+        private void InitializeToolTip()
+        {
+            toolTipLabel.ToolTipIcon = ToolTipIcon.Info;
+            toolTipLabel.IsBalloon = true;
+            toolTipLabel.ShowAlways = true;
+        }
+
         //This constructor is used for loading a game
         public GameInterface(Player player1, Player player2)
         {
@@ -134,7 +142,7 @@ namespace Monopoly
                 int xPlayer2 = coordinates[player2.TotalMovement].X;
                 int yPlayer2 = coordinates[player2.TotalMovement].Y;
                 DrawMovementPlayer2(e, xPlayer2, yPlayer2);
-            }            
+            }
         }
 
         private void DrawPlayerAtStart(PaintEventArgs e)
@@ -174,13 +182,9 @@ namespace Monopoly
             e.Graphics.DrawEllipse(new Pen(secca_dis), recPlayer2);
         }
 
-        private void panelBoard_MouseMove(object sender, MouseEventArgs e)
-        {
-            Text= e.Location.X + ":" + e.Location.Y;
-        }
-
         private void rollDiceButton_Click(object sender, EventArgs e)
         {
+            Mediteranean.BringToFront();
             bolGameStarted = true;
             if (!isJustLoaded) //If start from a new game
             {
@@ -469,6 +473,189 @@ namespace Monopoly
                 isTurnOffSound = false;
                 stopMusicButton.Text = "Stop Music";
             }           
+        }
+
+        
+
+        private void Mediteranean_MouseHover(object sender, EventArgs e)
+        {
+            EntryInfo temEntryInfo = GameBoardInfo.list[1];
+            NewMethod(temEntryInfo, Mediteranean);
+        }
+        
+
+        private void Baltic_MouseHover(object sender, EventArgs e)
+        {
+            EntryInfo temEntryInfo = GameBoardInfo.list[3];
+            NewMethod(temEntryInfo, Baltic);
+        }
+       
+        private void RailRoad_MouseHover(object sender, EventArgs e)
+        {
+            EntryInfo temEntryInfo = GameBoardInfo.list[5];
+            NewMethod(temEntryInfo, RailRoad);
+        }
+        
+        private void Oriental_MouseHover(object sender, EventArgs e)
+        {
+            EntryInfo temEntryInfo = GameBoardInfo.list[6];
+            NewMethod(temEntryInfo, Oriental);
+        }
+
+        private void Vermont_MouseHover(object sender, EventArgs e)
+        {
+            EntryInfo temEntryInfo = GameBoardInfo.list[8];
+            NewMethod(temEntryInfo, Vermont);
+        }
+
+        private void Connecticut_MouseHover(object sender, EventArgs e)
+        {
+            EntryInfo temEntryInfo = GameBoardInfo.list[9];
+            NewMethod(temEntryInfo, Connecticut);
+        }
+
+        private void ST_Charles_MouseHover(object sender, EventArgs e)
+        {
+            EntryInfo temEntryInfo = GameBoardInfo.list[11];
+            NewMethod(temEntryInfo, ST_Charles);
+        }
+
+        private void Electric_MouseHover(object sender, EventArgs e)
+        {
+            EntryInfo temEntryInfo = GameBoardInfo.list[12];
+            NewMethod(temEntryInfo, Electric);
+        }
+        
+        private void States_MouseHover(object sender, EventArgs e)
+        {
+            EntryInfo temEntryInfo = GameBoardInfo.list[13];
+            NewMethod(temEntryInfo, States);
+        }
+
+        private void Virginia_MouseHover(object sender, EventArgs e)
+        {
+            EntryInfo temEntryInfo = GameBoardInfo.list[14];
+            NewMethod(temEntryInfo, Virginia);
+        }        
+
+        private void Pennsylvania_MouseHover(object sender, EventArgs e)
+        {
+            EntryInfo temEntryInfo = GameBoardInfo.list[15];
+            NewMethod(temEntryInfo, Pennsylvania);
+        }
+
+        private void ST_James_MouseHover(object sender, EventArgs e)
+        {
+            EntryInfo temEntryInfo = GameBoardInfo.list[16];
+            NewMethod(temEntryInfo, ST_James);
+        }
+
+        private void Tennessee_MouseHover(object sender, EventArgs e)
+        {
+            EntryInfo temEntryInfo = GameBoardInfo.list[18];
+            NewMethod(temEntryInfo, Tennessee);
+        }
+
+        private void NewYork_MouseHover(object sender, EventArgs e)
+        {
+            EntryInfo temEntryInfo = GameBoardInfo.list[19];
+            NewMethod(temEntryInfo, NewYork);
+        }
+                   
+        private void Kentucky_MouseHover(object sender, EventArgs e)
+        {
+            EntryInfo temEntryInfo = GameBoardInfo.list[21];
+            NewMethod(temEntryInfo, Kentucky);
+        }
+        private void Indiana_MouseHover(object sender, EventArgs e)
+        {
+            EntryInfo temEntryInfo = GameBoardInfo.list[23];
+            NewMethod(temEntryInfo, Indiana);
+        }
+        private void Illnois_MouseHover(object sender, EventArgs e)
+        {
+            EntryInfo temEntryInfo = GameBoardInfo.list[24];
+            NewMethod(temEntryInfo, Illnois);
+        }
+        
+        private void BAndO_MouseHover(object sender, EventArgs e)
+        {
+            EntryInfo temEntryInfo = GameBoardInfo.list[25];
+            NewMethod(temEntryInfo, Illnois);
+        }
+       
+        private void Atlantic_MouseHover(object sender, EventArgs e)
+        {
+            EntryInfo temEntryInfo = GameBoardInfo.list[26];
+            NewMethod(temEntryInfo, Atlantic);
+        }
+        
+        private void Ventinor_MouseHover(object sender, EventArgs e)
+        {
+            EntryInfo temEntryInfo = GameBoardInfo.list[27];
+            NewMethod(temEntryInfo, Ventinor);
+        }
+
+        private void Water_MouseHover(object sender, EventArgs e)
+        {
+            EntryInfo temEntryInfo = GameBoardInfo.list[28];
+            NewMethod(temEntryInfo, Water);
+        }
+        
+        private void Marvin_MouseHover(object sender, EventArgs e)
+        {
+            EntryInfo temEntryInfo = GameBoardInfo.list[29];
+            NewMethod(temEntryInfo, Marvin);
+        }
+
+        private void Pacific_MouseHover(object sender, EventArgs e)
+        {
+            EntryInfo temEntryInfo = GameBoardInfo.list[31];
+            NewMethod(temEntryInfo, Pacific);
+        }
+
+        private void North_Carolina_MouseHover(object sender, EventArgs e)
+        {
+            EntryInfo temEntryInfo = GameBoardInfo.list[32];
+            NewMethod(temEntryInfo, North_Carolina);
+        }
+
+        private void Pennsylva_MouseHover(object sender, EventArgs e)
+        {
+            EntryInfo temEntryInfo = GameBoardInfo.list[34];
+            NewMethod(temEntryInfo, Pennsylva);
+        }
+
+        private void Short_MouseHover(object sender, EventArgs e)
+        {
+            EntryInfo temEntryInfo = GameBoardInfo.list[35];
+            NewMethod(temEntryInfo, Short);
+        }
+                  
+        private void Park_place_MouseHover(object sender, EventArgs e)
+        {
+            EntryInfo temEntryInfo = GameBoardInfo.list[37];
+            NewMethod(temEntryInfo, Park_place);
+        }
+
+        private void Boardwalk_MouseHover(object sender, EventArgs e)
+        {
+            EntryInfo temEntryInfo = GameBoardInfo.list[39];
+            NewMethod(temEntryInfo, Boardwalk);
+        }
+
+        private void NewMethod(EntryInfo temInfo, Label label)
+        {
+            if (temInfo.Owner == null)
+            {
+                toolTipLabel.SetToolTip(label, temInfo.EntryName + "\n" + "Owner: "
+                + "No owner yet" + "\n" + "Property price: $" + temInfo.GetPrice());
+            }
+            else
+            {
+                toolTipLabel.SetToolTip(label, temInfo.EntryName + "\n" + "Owner: "
+                + temInfo.Owner + "\n" + "Rent: $"+temInfo.GetPrice());
+            }            
         }
     }    
 }

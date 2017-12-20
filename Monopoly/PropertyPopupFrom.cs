@@ -33,7 +33,7 @@ namespace Monopoly
             {
                 player.Payment(entryInfo.OriginPrice);
                 entryInfo.WhichPlayer = player.PlayerID;
-               
+                entryInfo.Owner = player.PlayerName;
                 player.AddProperty(entryInfo);
                 this.Close();
             }
