@@ -474,9 +474,10 @@ namespace Monopoly
                 stopMusicButton.Text = "Stop Music";
             }           
         }
-
-        
-
+      
+        /*The following functions use Tooltip control to display information when player put
+         *the cursor over an entry 
+         */ 
         private void Mediteranean_MouseHover(object sender, EventArgs e)
         {
             EntryInfo temEntryInfo = GameBoardInfo.list[1];
@@ -644,6 +645,7 @@ namespace Monopoly
             NewMethod(temEntryInfo, Boardwalk);
         }
 
+        //Connect Tooltip with specified label
         private void NewMethod(EntryInfo temInfo, Label label)
         {
             if (temInfo.Owner == null)
